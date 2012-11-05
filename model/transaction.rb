@@ -1,4 +1,5 @@
 module Scrooge
+
   class Transaction
     attr :description, :amount
 
@@ -7,4 +8,5 @@ module Scrooge
       @amount = amount
     end
   end
+
 end
