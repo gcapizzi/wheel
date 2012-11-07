@@ -7,5 +7,9 @@ module Scrooge
     def insert(account)
       @db.insert(name: account.name)
     end
+
+    def update(account)
+      @db.where(id: account.id).update(name: account.name)
+    end
   end
 end
