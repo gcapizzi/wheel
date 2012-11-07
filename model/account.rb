@@ -1,7 +1,7 @@
 module Scrooge
 
   class Account
-    attr :name
+    attr_accessor :id, :name
     attr_reader :transactions
 
     def initialize(name = '')
