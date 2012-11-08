@@ -28,5 +28,13 @@ module Scrooge
         mapper.update(account)
       end
     end
+
+    describe '#delete' do
+      it 'calls delete on the db' do
+        db.should_receive(:delete).with(id: account.id)
+
+        mapper.delete(account)
+      end
+    end
   end
 end

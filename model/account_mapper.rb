@@ -11,5 +11,9 @@ module Scrooge
     def update(account)
       @db.where(id: account.id).update(name: account.name)
     end
+
+    def delete(account)
+      @db.delete({id: account.id})
+    end
   end
 end
