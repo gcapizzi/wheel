@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../../model/transaction.rb'
+require_relative '../../model/transaction'
 
 module Scrooge
   describe Transaction do

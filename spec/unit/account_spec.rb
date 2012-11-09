@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../../model/account.rb'
+require_relative '../../model/account'
 
 module Scrooge
   describe Account do
