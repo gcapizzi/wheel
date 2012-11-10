@@ -1,23 +1,23 @@
 module Scrooge
   class AccountMapper
-    def initialize(db)
-      @db = db
+    def initialize(dataset)
+      @dataset = dataset
     end
 
     def insert(account)
-      @db.insert(name: account.name)
+      @dataset.insert(name: account.name)
     end
 
     def update(account)
-      @db.where(id: account.id).update(name: account.name)
+      @dataset.where(id: account.id).update(name: account.name)
     end
 
     def delete(account)
-      @db.delete({id: account.id})
+      @dataset.delete({id: account.id})
     end
 
     def find(args)
-      record = @db.where(args)
+      record = @dataset.where(args)
 
       if !record.empty?
         record = record.first
