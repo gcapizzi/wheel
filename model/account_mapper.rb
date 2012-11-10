@@ -13,7 +13,7 @@ module Scrooge
     end
 
     def delete(account)
-      @dataset.delete({id: account.id})
+      @dataset.where({id: account.id}).delete
     end
 
     def find(args)

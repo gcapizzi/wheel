@@ -31,7 +31,9 @@ module Scrooge
 
     describe '#delete' do
       it 'calls delete on the dataset' do
-        dataset.should_receive(:delete).with(id: account.id)
+        account_dataset = double("Account dataset")
+        dataset.should_receive(:where).with(id: account.id).and_return(account_dataset)
+        account_dataset.should_receive(:delete)
 
         mapper.delete(account)
       end
