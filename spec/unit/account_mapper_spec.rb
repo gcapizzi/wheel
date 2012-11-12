@@ -31,12 +31,22 @@ module Scrooge
     end
 
     describe '#delete' do
-      it 'calls delete on the dataset' do
-        account_dataset = double("Account dataset")
-        dataset.should_receive(:where).with(id: saved_account.id).and_return(account_dataset)
-        account_dataset.should_receive(:delete)
+      context 'when the account has been saved' do
+        it 'calls delete on the dataset' do
+          account_dataset = double("Account dataset")
+          dataset.should_receive(:where).with(id: saved_account.id).and_return(account_dataset)
+          account_dataset.should_receive(:delete)
 
-        mapper.delete(saved_account)
+          mapper.delete(saved_account)
+        end
+      end
+
+      context 'when the account has not been saved' do
+         it 'does nothing' do
+           dataset.should_not_receive(:where)
+
+           mapper.delete(account)
+         end
       end
     end
 
