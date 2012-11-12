@@ -5,37 +5,38 @@ module Scrooge
   describe AccountMapper do
     let(:dataset) { double("Dataset") }
     let(:mapper) { AccountMapper.new(dataset) }
-    let(:account) do
-      account = Account.new("Test account")
-      account.id = 1
-      account
-    end
+    let(:account) { Account.new("Test account") }
+    let(:saved_account) { a = account; a.id = 1; a }
 
-    describe '#insert' do
-      it 'calls insert on the dataset' do
-        dataset.should_receive(:insert).with(name: account.name)
+    describe '#save' do
+      context 'when the account has never been saved' do
+        it 'calls insert on the dataset and sets the account id' do
+          dataset.should_receive(:insert).with(name: account.name).and_return(1)
 
-        mapper.insert(account)
+          mapper.save(account)
+
+          account.id.should_not be_nil
+        end
       end
-    end
 
-    describe '#update' do
-      it 'calls update on the dataset' do
-        account_dataset = double("Account dataset")
-        dataset.should_receive(:where).with(id: account.id).and_return(account_dataset)
-        account_dataset.should_receive(:update).with(name: account.name)
+      context 'when the account has already been saved' do
+        it 'calls update on the dataset' do
+          account_dataset = double("Account dataset")
+          dataset.should_receive(:where).with(id: saved_account.id).and_return(account_dataset)
+          account_dataset.should_receive(:update).with(name: account.name)
 
-        mapper.update(account)
+          mapper.save(saved_account)
+        end
       end
     end
 
     describe '#delete' do
       it 'calls delete on the dataset' do
         account_dataset = double("Account dataset")
-        dataset.should_receive(:where).with(id: account.id).and_return(account_dataset)
+        dataset.should_receive(:where).with(id: saved_account.id).and_return(account_dataset)
         account_dataset.should_receive(:delete)
 
-        mapper.delete(account)
+        mapper.delete(saved_account)
       end
     end
 

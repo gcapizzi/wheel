@@ -12,36 +12,32 @@ module Scrooge
       db[:accounts]
     }
     let(:mapper) { AccountMapper.new(dataset) }
-    let(:account) do
-      account = Account.new("Test account")
-      account.id = 1
-      account
-    end
+    let(:account) { Account.new("Test account") }
 
     it 'finds a previously inserted account by id' do
-      mapper.insert(account)
+      mapper.save(account)
       found = mapper.find(id: account.id)
       found.id.should == account.id
       found.name.should == account.name
     end
 
     it 'finds a previously inserted account by name' do
-      mapper.insert(account)
+      mapper.save(account)
       found = mapper.find(name: account.name)
       found.id.should == account.id
       found.name.should == account.name
     end
 
     it 'updates an account successfully' do
-      mapper.insert(account)
+      mapper.save(account)
       account.name = "Test account new name"
-      mapper.update(account)
+      mapper.save(account)
       found = mapper.find(id: account.id)
       found.name.should == account.name
     end
 
     it 'deletes and account successfully' do
-      mapper.insert(account)
+      mapper.save(account)
       mapper.find(id: account.id).should_not be_nil
       mapper.delete(account)
       mapper.find(id:account.id).should be_nil

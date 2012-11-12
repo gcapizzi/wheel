@@ -4,12 +4,12 @@ module Scrooge
       @dataset = dataset
     end
 
-    def insert(account)
-      @dataset.insert(name: account.name)
-    end
-
-    def update(account)
-      @dataset.where(id: account.id).update(name: account.name)
+    def save(account)
+      if saved? account
+        update(account)
+      else
+        insert(account)
+      end
     end
 
     def delete(account)
@@ -27,6 +27,21 @@ module Scrooge
       end
 
       return account
+    end
+
+    private
+
+    def insert(account)
+      id = @dataset.insert(name: account.name)
+      account.id = id
+    end
+
+    def update(account)
+      @dataset.where(id: account.id).update(name: account.name)
+    end
+
+    def saved?(account)
+      !account.id.nil?
     end
   end
 end
