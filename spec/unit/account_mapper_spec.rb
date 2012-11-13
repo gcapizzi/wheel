@@ -56,7 +56,7 @@ module Scrooge
         account_dataset = double("Account dataset")
         dataset.should_receive(:where).with(id: 1).and_return(account_dataset)
         account_dataset.should_receive(:first).and_return(record)
-        account_dataset.stub!(:empty?).and_return(false)
+        account_dataset.stub(:empty?).and_return(false)
 
         found = mapper.find(id: 1)
 
