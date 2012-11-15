@@ -46,5 +46,14 @@ module Scrooge
         found.amount.should == transaction.amount
       end
     end
+
+    describe '#delete' do
+      it 'deletes a transaction successfully' do
+        mapper.save(transaction)
+        mapper.find(id: transaction.id).should_not be_nil
+        mapper.delete(transaction)
+        mapper.find(id: transaction.id).should be_nil
+      end
+    end
   end
 end

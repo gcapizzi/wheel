@@ -31,6 +31,26 @@ module Scrooge
       end
     end
 
+    describe '#delete' do
+      context 'when the transaction has already been saved' do
+        it 'calls delete on the dataset' do
+          transaction_dataset = double("Transaction dataset")
+          dataset.should_receive(:where).with(id: saved_transaction.id).and_return(transaction_dataset)
+          transaction_dataset.should_receive(:delete)
+
+          mapper.delete(saved_transaction)
+        end
+      end
+
+      context 'when the transaction has not been saved' do
+         it 'does nothing' do
+           dataset.should_not_receive(:where)
+
+           mapper.delete(transaction)
+         end
+      end
+    end
+
     describe '#find' do
       it 'calls where on the dataset' do
         record = { id: 1, description: "Test transaction", amount: 12.34 }

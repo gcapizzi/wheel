@@ -12,6 +12,10 @@ module Scrooge
       end
     end
 
+    def delete(transaction)
+      @dataset.where({id: transaction.id}).delete if saved? transaction
+    end
+
     def find(args)
       record = @dataset.where(args)
 
