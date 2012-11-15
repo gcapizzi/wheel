@@ -21,6 +21,7 @@ module Scrooge
           mapper.save(transaction)
           found = mapper.find(id: transaction.id)
           found.description.should == transaction.description
+          found.amount.should == transaction.amount
         end
       end
 

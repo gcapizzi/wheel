@@ -15,12 +15,22 @@ module Scrooge
     let(:account) { Account.new("Test account") }
 
     describe '#save' do
-      it 'updates an account successfully' do
-        mapper.save(account)
-        account.name = "Test account new name"
-        mapper.save(account)
-        found = mapper.find(id: account.id)
-        found.name.should == account.name
+      context 'when the account has never been saved' do
+        it 'calls insert on the dataset and sets the account id' do
+          mapper.save(account)
+          found = mapper.find(id: account.id)
+          found.name.should == account.name
+        end
+      end
+
+      context 'when the account has already been saved' do
+        it 'calls update on the dataset' do
+          mapper.save(account)
+          account.name = "Test account new name"
+          mapper.save(account)
+          found = mapper.find(id: account.id)
+          found.name.should == account.name
+        end
       end
     end
 
