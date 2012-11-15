@@ -41,7 +41,7 @@ module Scrooge
       it 'finds a previously inserted transaction by id' do
         mapper.save(transaction)
         found = mapper.find(id: transaction.id)
-        found.id.should == account.id
+        found.id.should == transaction.id
         found.description.should == transaction.description
         found.amount.should == transaction.amount
       end
