@@ -19,7 +19,7 @@ module Scrooge
       context 'when the transaction has never been saved' do
         it 'inserts the transaction' do
           mapper.save(transaction)
-          found = mapper.find(id: transaction.id)
+          found = mapper.find(transaction.id)
           found.description.should == transaction.description
           found.amount.should == transaction.amount
         end
@@ -31,7 +31,7 @@ module Scrooge
           transaction.description = "Test transaction new description"
           transaction.amount = 56.78
           mapper.save(transaction)
-          found = mapper.find(id: transaction.id)
+          found = mapper.find(transaction.id)
           found.description.should == transaction.description
           found.amount.should == transaction.amount
         end
@@ -39,9 +39,9 @@ module Scrooge
     end
 
     describe '#find' do
-      it 'finds a previously inserted transaction by id' do
+      it 'finds a previously inserted transaction' do
         mapper.save(transaction)
-        found = mapper.find(id: transaction.id)
+        found = mapper.find(transaction.id)
         found.id.should == transaction.id
         found.description.should == transaction.description
         found.amount.should == transaction.amount
@@ -51,9 +51,9 @@ module Scrooge
     describe '#delete' do
       it 'deletes a transaction successfully' do
         mapper.save(transaction)
-        mapper.find(id: transaction.id).should_not be_nil
+        mapper.find(transaction.id).should_not be_nil
         mapper.delete(transaction)
-        mapper.find(id: transaction.id).should be_nil
+        mapper.find(transaction.id).should be_nil
       end
     end
   end

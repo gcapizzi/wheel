@@ -1,4 +1,5 @@
 require 'sequel/core'
+require_relative '../../model/transaction'
 require_relative '../../model/transaction_mapper'
 
 module Scrooge
@@ -59,7 +60,7 @@ module Scrooge
         transaction_dataset.should_receive(:first).and_return(record)
         transaction_dataset.stub(:empty?).and_return(false)
 
-        found = mapper.find(id: 1)
+        found = mapper.find(1)
 
         found.should be_instance_of Transaction
         found.id.should == 1
@@ -72,7 +73,7 @@ module Scrooge
         dataset.should_receive(:where).with(id: 99).and_return(empty_dataset)
         empty_dataset.should_receive(:empty?).and_return(true)
 
-        found = mapper.find(id: 99)
+        found = mapper.find(99)
 
         found.should be_nil
       end

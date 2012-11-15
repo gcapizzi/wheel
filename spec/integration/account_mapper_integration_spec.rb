@@ -1,5 +1,8 @@
 require 'rspec'
+require 'sequel/core'
+require_relative '../../model/account'
 require_relative '../../model/account_mapper'
+
 
 module Scrooge
   describe AccountMapper do
@@ -18,7 +21,7 @@ module Scrooge
       context 'when the account has never been saved' do
         it 'calls insert on the dataset and sets the account id' do
           mapper.save(account)
-          found = mapper.find(id: account.id)
+          found = mapper.find(account.id)
           found.name.should == account.name
         end
       end
@@ -28,23 +31,16 @@ module Scrooge
           mapper.save(account)
           account.name = "Test account new name"
           mapper.save(account)
-          found = mapper.find(id: account.id)
+          found = mapper.find(account.id)
           found.name.should == account.name
         end
       end
     end
 
     describe '#find' do
-      it 'finds a previously inserted account by id' do
+      it 'finds a previously inserted account' do
         mapper.save(account)
-        found = mapper.find(id: account.id)
-        found.id.should == account.id
-        found.name.should == account.name
-      end
-
-      it 'finds a previously inserted account by name' do
-        mapper.save(account)
-        found = mapper.find(name: account.name)
+        found = mapper.find(account.id)
         found.id.should == account.id
         found.name.should == account.name
       end
@@ -53,9 +49,9 @@ module Scrooge
     describe '#delete' do
       it 'deletes an account successfully' do
         mapper.save(account)
-        mapper.find(id: account.id).should_not be_nil
+        mapper.find(account.id).should_not be_nil
         mapper.delete(account)
-        mapper.find(id:account.id).should be_nil
+        mapper.find(account.id).should be_nil
       end
     end
   end

@@ -16,8 +16,8 @@ module Scrooge
       @dataset.where({id: account.id}).delete if saved? account
     end
 
-    def find(args)
-      record = @dataset.where(args)
+    def find(id)
+      record = @dataset.where(id: id)
 
       if !record.empty?
         record = record.first
