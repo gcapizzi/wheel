@@ -1,7 +1,7 @@
 module Scrooge
 
   class Transaction
-    attr :description, :amount
+    attr_accessor :id, :description, :amount
 
     def initialize(description = '', amount = 0)
       @description = description
