@@ -31,7 +31,7 @@ module Scrooge
     end
 
     describe '#delete' do
-      context 'when the account has been saved' do
+      context 'when the account has already been saved' do
         it 'calls delete on the dataset' do
           account_dataset = double("Account dataset")
           dataset.should_receive(:where).with(id: saved_account.id).and_return(account_dataset)

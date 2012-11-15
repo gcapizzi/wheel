@@ -16,18 +16,34 @@ module Scrooge
     let(:transaction) { Transaction.new("Test transaction", 12.34) }
 
     describe '#save' do
-      it 'saves an account successfully' do
-        mapper.save(transaction)
-        found = mapper.find(id: transaction.id)
-        found.description.should == transaction.description
+      context 'when the transaction has never been saved' do
+        it 'inserts the transaction' do
+          mapper.save(transaction)
+          found = mapper.find(id: transaction.id)
+          found.description.should == transaction.description
+        end
       end
 
-      it 'updates an account successfully' do
-        mapper.save(account)
-        account.name = "Test account new name"
-        mapper.save(account)
-        found = mapper.find(id: account.id)
-        found.name.should == account.name
+      context 'when the transaction has already been saved' do
+        it 'updates the transaction' do
+          mapper.save(transaction)
+          transaction.description = "Test transaction new description"
+          transaction.amount = 56.78
+          mapper.save(transaction)
+          found = mapper.find(id: transaction.id)
+          found.description.should == transaction.description
+          found.amount.should == transaction.amount
+        end
+      end
+    end
+
+    describe '#find' do
+      it 'finds a previously inserted transaction by id' do
+        mapper.save(transaction)
+        found = mapper.find(id: transaction.id)
+        found.id.should == account.id
+        found.description.should == transaction.description
+        found.amount.should == transaction.amount
       end
     end
   end
