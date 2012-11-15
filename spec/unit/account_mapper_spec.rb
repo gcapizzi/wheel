@@ -15,7 +15,7 @@ module Scrooge
 
           mapper.save(account)
 
-          account.id.should_not be_nil
+          account.id.should == 1
         end
       end
 
