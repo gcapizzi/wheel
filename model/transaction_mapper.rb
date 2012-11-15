@@ -4,11 +4,11 @@ module Scrooge
       @dataset = dataset
     end
 
-    def save(account)
-      if saved? account
-        update(account)
+    def save(transaction)
+      if saved? transaction
+        update(transaction)
       else
-        insert(account)
+        insert(transaction)
       end
     end
 

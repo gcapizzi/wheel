@@ -1,5 +1,5 @@
 require 'sequel/core'
-require_relative '../../model/account_mapper'
+require_relative '../../model/transaction_mapper'
 
 module Scrooge
   describe TransactionMapper do
@@ -47,7 +47,7 @@ module Scrooge
         found.amount.should == 12.34
       end
 
-      it 'returns nil if no account is found' do
+      it 'returns nil if no transaction is found' do
         empty_dataset = double("Empty dataset")
         dataset.should_receive(:where).with(id: 99).and_return(empty_dataset)
         empty_dataset.should_receive(:empty?).and_return(true)
