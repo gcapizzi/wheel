@@ -13,7 +13,7 @@ module Scrooge
     end
 
     def delete(transaction)
-      @dataset.where({id: transaction.id}).delete if saved? transaction
+      @dataset.where(id: transaction.id).delete if saved? transaction
     end
 
     def find(id)
@@ -32,13 +32,17 @@ module Scrooge
 
     private
 
+    def attrs(transaction)
+      { description: transaction.description, amount: transaction.amount }
+    end
+
     def insert(transaction)
-      id = @dataset.insert(description: transaction.description, amount: transaction.amount)
+      id = @dataset.insert(attrs(transaction))
       transaction.id = id
     end
 
     def update(transaction)
-      @dataset.where(id: transaction.id).update(description: transaction.description, amount: transaction.amount)
+      @dataset.where(id: transaction.id).update(attrs(transaction))
     end
 
     def saved?(transaction)
