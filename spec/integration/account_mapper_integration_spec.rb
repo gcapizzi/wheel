@@ -1,8 +1,4 @@
-require 'rspec'
-require 'sequel/core'
-require_relative '../../model/account'
 require_relative '../../model/account_mapper'
-
 
 module Scrooge
   describe AccountMapper do

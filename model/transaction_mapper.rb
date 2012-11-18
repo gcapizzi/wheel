@@ -1,3 +1,6 @@
+require 'sequel/core'
+require_relative 'transaction'
+
 module Scrooge
   class TransactionMapper
     def initialize(dataset)

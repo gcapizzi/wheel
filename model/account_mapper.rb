@@ -1,3 +1,6 @@
+require 'sequel/core'
+require_relative 'account'
+
 module Scrooge
   class AccountMapper
     def initialize(dataset)

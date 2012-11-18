@@ -1,5 +1,3 @@
-require 'sequel/core'
-require_relative '../../model/transaction'
 require_relative '../../model/transaction_mapper'
 
 module Scrooge

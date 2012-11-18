@@ -1,4 +1,3 @@
-require 'rspec'
 require_relative '../../model/transaction_mapper'
 
 module Scrooge
