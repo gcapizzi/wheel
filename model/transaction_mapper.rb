@@ -21,15 +21,7 @@ module Scrooge
 
     def find(id)
       record = @dataset.where(id: id)
-
-      if !record.empty?
-        record = record.first
-        transaction = Transaction.new()
-        transaction.id = record[:id]
-        transaction.description = record[:description]
-        transaction.amount = record[:amount]
-      end
-
+      transaction = from_record(record.first) if !record.empty?
       return transaction
     end
 
@@ -37,6 +29,15 @@ module Scrooge
 
     def attrs(transaction)
       { description: transaction.description, amount: transaction.amount }
+    end
+
+    def from_record(attrs)
+      transaction = Transaction.new()
+      transaction.id = attrs[:id]
+      transaction.description = attrs[:description]
+      transaction.amount = attrs[:amount]
+
+      return transaction
     end
 
     def insert(transaction)

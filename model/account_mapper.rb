@@ -21,26 +21,31 @@ module Scrooge
 
     def find(id)
       record = @dataset.where(id: id)
-
-      if !record.empty?
-        record = record.first
-        account = Account.new()
-        account.id = record[:id]
-        account.name = record[:name]
-      end
-
+      account = from_record(record.first) if !record.empty?
       return account
     end
 
     private
 
+    def attrs(account)
+      { name: account.name }
+    end
+
+    def from_record(attrs)
+      account = Account.new()
+      account.id = attrs[:id]
+      account.name = attrs[:name]
+
+      return account
+    end
+
     def insert(account)
-      id = @dataset.insert(name: account.name)
+      id = @dataset.insert(attrs(account))
       account.id = id
     end
 
     def update(account)
-      @dataset.where(id: account.id).update(name: account.name)
+      @dataset.where(id: account.id).update(attrs(account))
     end
 
     def saved?(account)
