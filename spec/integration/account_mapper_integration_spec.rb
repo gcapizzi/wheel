@@ -1,3 +1,4 @@
+require 'spec_helper'
 require_relative '../../model/account_mapper'
 
 module Scrooge
