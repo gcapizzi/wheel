@@ -31,10 +31,10 @@ module Scrooge
       { name: account.name }
     end
 
-    def from_record(attrs)
+    def from_record(record)
       account = Account.new()
-      account.id = attrs[:id]
-      account.name = attrs[:name]
+      account.id = record[:id]
+      account.name = record[:name]
 
       return account
     end

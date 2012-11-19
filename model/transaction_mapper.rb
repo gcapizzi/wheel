@@ -31,11 +31,11 @@ module Scrooge
       { description: transaction.description, amount: transaction.amount }
     end
 
-    def from_record(attrs)
+    def from_record(record)
       transaction = Transaction.new()
-      transaction.id = attrs[:id]
-      transaction.description = attrs[:description]
-      transaction.amount = attrs[:amount]
+      transaction.id = record[:id]
+      transaction.description = record[:description]
+      transaction.amount = record[:amount]
 
       return transaction
     end
