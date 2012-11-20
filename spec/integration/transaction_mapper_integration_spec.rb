@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../lib/transaction_mapping'
+require_relative '../../lib/mapping/transaction_mapping'
 
 module Scrooge
   describe TransactionMapping do

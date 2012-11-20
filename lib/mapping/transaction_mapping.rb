@@ -1,6 +1,6 @@
 require 'sequel/core'
-require_relative 'mapper'
-require_relative 'transaction'
+require_relative '../mapper'
+require_relative '../transaction'
 
 module Scrooge
   class TransactionMapping
