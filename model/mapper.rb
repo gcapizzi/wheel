@@ -2,8 +2,9 @@ require 'sequel/core'
 
 module Scrooge
   class Mapper
-    def initialize(dataset)
+    def initialize(dataset, mapping)
       @dataset = dataset
+      @mapping = mapping
     end
 
     def save(object)
@@ -20,19 +21,21 @@ module Scrooge
 
     def find(id)
       record = @dataset.where(id: id)
-      object = from_record(record.first) if !record.empty?
+      object = @mapping.from_record(record.first) if !record.empty?
       return object
     end
 
     private
 
     def insert(object)
-      id = @dataset.insert(attrs(object))
+      record = @mapping.to_record(object)
+      id = @dataset.insert(record)
       object.id = id
     end
 
     def update(object)
-      @dataset.where(id: object.id).update(attrs(object))
+      record = @mapping.to_record(object)
+      @dataset.where(id: object.id).update(record)
     end
 
     def saved?(object)

@@ -1,8 +1,8 @@
 require 'spec_helper'
-require_relative '../../model/transaction_mapper'
+require_relative '../../model/transaction_mapping'
 
 module Scrooge
-  describe TransactionMapper do
+  describe TransactionMapping do
     let(:dataset) {
       db = Sequel.sqlite
       db.create_table :transactions do
@@ -12,7 +12,7 @@ module Scrooge
       end
       db[:transactions]
     }
-    let(:mapper) { TransactionMapper.new(dataset) }
+    let(:mapper) { Mapper.new(dataset, TransactionMapping.new) }
     let(:transaction) { Transaction.new("Test transaction", 12.34) }
 
     describe '#save' do

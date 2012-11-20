@@ -1,10 +1,10 @@
 require 'spec_helper'
-require_relative '../../model/account_mapper'
+require_relative '../../model/account_mapping'
 
 module Scrooge
-  describe AccountMapper do
+  describe AccountMapping do
     let(:dataset) { double("Dataset") }
-    let(:mapper) { AccountMapper.new(dataset) }
+    let(:mapper) { Mapper.new(dataset, AccountMapping.new) }
     let(:account) { Account.new("Test account") }
     let(:saved_account) { a = account; a.id = 1; a }
 

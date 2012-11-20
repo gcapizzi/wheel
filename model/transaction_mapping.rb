@@ -3,10 +3,8 @@ require_relative 'mapper'
 require_relative 'transaction'
 
 module Scrooge
-  class TransactionMapper < Mapper
-    protected
-
-    def attrs(transaction)
+  class TransactionMapping
+    def to_record(transaction)
       { description: transaction.description, amount: transaction.amount }
     end
 

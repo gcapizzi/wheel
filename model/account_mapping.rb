@@ -3,10 +3,8 @@ require_relative 'mapper'
 require_relative 'account'
 
 module Scrooge
-  class AccountMapper < Mapper
-    protected
-
-    def attrs(account)
+  class AccountMapping
+    def to_record(account)
       { name: account.name }
     end
 

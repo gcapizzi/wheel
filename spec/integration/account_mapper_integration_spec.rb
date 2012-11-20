@@ -1,8 +1,8 @@
 require 'spec_helper'
-require_relative '../../model/account_mapper'
+require_relative '../../model/account_mapping'
 
 module Scrooge
-  describe AccountMapper do
+  describe AccountMapping do
     let(:dataset) {
       db = Sequel.sqlite
       db.create_table :accounts do
@@ -11,7 +11,7 @@ module Scrooge
       end
       db[:accounts]
     }
-    let(:mapper) { AccountMapper.new(dataset) }
+    let(:mapper) { Mapper.new(dataset, AccountMapping.new) }
     let(:account) { Account.new("Test account") }
 
     describe '#save' do
