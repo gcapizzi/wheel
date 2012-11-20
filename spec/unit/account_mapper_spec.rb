@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../model/account_mapping'
+require_relative '../../lib/account_mapping'
 
 module Scrooge
   describe AccountMapping do

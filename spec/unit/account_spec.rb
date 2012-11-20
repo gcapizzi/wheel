@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../model/account'
+require_relative '../../lib/account'
 
 module Scrooge
   describe Account do

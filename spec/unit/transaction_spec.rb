@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../model/transaction'
+require_relative '../../lib/transaction'
 
 module Scrooge
   describe Transaction do
