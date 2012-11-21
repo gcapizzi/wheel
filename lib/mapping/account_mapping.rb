@@ -1,18 +1,10 @@
 require 'sequel/core'
 require_relative '../account'
+require_relative '../mapping'
 
 module Scrooge
-  class AccountMapping
-    def to_record(account)
-      { name: account.name }
-    end
-
-    def from_record(record)
-      account = Account.new()
-      account.id = record[:id]
-      account.name = record[:name]
-
-      return account
-    end
+  class AccountMapping < Mapping
+    @klass = Account
+    @fields = [:name]
   end
 end
