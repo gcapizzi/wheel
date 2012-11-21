@@ -1,5 +1,4 @@
 require 'sequel/core'
-require_relative '../mapper'
 require_relative '../account'
 
 module Scrooge

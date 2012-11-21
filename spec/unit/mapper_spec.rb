@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'ostruct'
+require_relative '../../lib/mapper'
 
 module Scrooge
   describe Mapper do
