@@ -8,7 +8,7 @@ module Scrooge
       class FakeMapping < Mapping; end
       FakeMapping.klass = klass
       FakeMapping.fields = [:one, :two, :three]
-      FakeMapping.new
+      FakeMapping
     end
 
     describe '#from_record' do
