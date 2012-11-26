@@ -5,14 +5,14 @@ require_relative '../../lib/mapping/account_mapping'
 module Scrooge
 
   describe Mapper, AccountMapping do
-    let(:dataset) {
+    let(:dataset) do
       db = Sequel.sqlite
       db.create_table :accounts do
         primary_key :id
         String :name
       end
       db[:accounts]
-    }
+    end
     let(:mapping) { AccountMapping }
     let(:mapper) { Mapper.new(dataset, mapping) }
     let(:account) { Account.new("Test account") }
