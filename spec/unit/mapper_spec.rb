@@ -17,7 +17,8 @@ module Scrooge
     describe '#save' do
       context 'when the object has never been saved' do
         it 'calls insert on the dataset and sets the object id' do
-          mapping.should_receive(:to_record).with(object).and_return(attributes)
+          mapping.should_receive(:to_record).with(object)
+            .and_return(attributes)
           dataset.should_receive(:insert).with(attributes).and_return(1)
 
           mapper.save(object)
@@ -28,9 +29,11 @@ module Scrooge
 
       context 'when the object has already been saved' do
         it 'calls update on the dataset' do
-          mapping.should_receive(:to_record).with(saved_object).and_return(attributes)
+          mapping.should_receive(:to_record).with(saved_object)
+            .and_return(attributes)
           object_dataset = double("Object dataset")
-          dataset.should_receive(:where).with(id: saved_object.id).and_return(object_dataset)
+          dataset.should_receive(:where).with(id: saved_object.id)
+            .and_return(object_dataset)
           object_dataset.should_receive(:update).with(attributes)
 
           mapper.save(saved_object)
@@ -42,7 +45,8 @@ module Scrooge
       context 'when the object has already been saved' do
         it 'calls delete on the dataset' do
           object_dataset = double("Object dataset")
-          dataset.should_receive(:where).with(id: saved_object.id).and_return(object_dataset)
+          dataset.should_receive(:where).with(id: saved_object.id)
+            .and_return(object_dataset)
           object_dataset.should_receive(:delete)
 
           mapper.delete(saved_object)
