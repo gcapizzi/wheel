@@ -6,7 +6,7 @@ module Scrooge
     let(:record) { { name: "Test account" } }
     let(:saved_record) { record.merge(id: 1) }
     let(:account) { a = Account.new("Test account"); a.id = 1; a }
-    let(:mapping) { AccountMapping.new }
+    let(:mapping) { AccountMapping }
 
     describe '#from_record' do
       it 'builds an Account instance from a hash' do

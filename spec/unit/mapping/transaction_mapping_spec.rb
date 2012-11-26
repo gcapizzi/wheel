@@ -6,7 +6,7 @@ module Scrooge
     let(:record) { { description: "Test transaction", amount: 12.34 } }
     let(:saved_record) { record.merge(id: 1) }
     let(:transaction) { t = Transaction.new("Test transaction", 12.34); t.id = 1; t }
-    let(:mapping) { TransactionMapping.new }
+    let(:mapping) { TransactionMapping }
 
     describe '#from_record' do
       it 'builds a Transaction instance from a hash' do

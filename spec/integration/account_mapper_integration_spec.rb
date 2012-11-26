@@ -12,7 +12,7 @@ module Scrooge
       end
       db[:accounts]
     }
-    let(:mapping) { AccountMapping.new }
+    let(:mapping) { AccountMapping }
     let(:mapper) { Mapper.new(dataset, mapping) }
     let(:account) { Account.new("Test account") }
 

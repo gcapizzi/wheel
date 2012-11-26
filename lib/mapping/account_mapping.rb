@@ -4,7 +4,7 @@ require_relative '../mapping'
 
 module Scrooge
   class AccountMapping < Mapping
-    @klass = Account
-    @fields = [:name]
+    maps Account
+    fields :name
   end
 end

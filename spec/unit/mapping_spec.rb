@@ -6,8 +6,8 @@ module Scrooge
     let (:klass) { double("Fake class") }
     let (:mapping) do
       class FakeMapping < Mapping; end
-      FakeMapping.klass = klass
-      FakeMapping.fields = [:one, :two, :three]
+      FakeMapping.maps klass
+      FakeMapping.fields :one, :two, :three
       FakeMapping
     end
 

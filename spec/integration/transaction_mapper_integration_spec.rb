@@ -13,7 +13,7 @@ module Scrooge
       end
       db[:transactions]
     }
-    let(:mapping) { TransactionMapping.new }
+    let(:mapping) { TransactionMapping }
     let(:mapper) { Mapper.new(dataset, mapping) }
     let(:transaction) { Transaction.new("Test transaction", 12.34) }
 
