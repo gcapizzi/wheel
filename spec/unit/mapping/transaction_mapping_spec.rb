@@ -2,10 +2,15 @@ require 'spec_helper'
 require_relative '../../../lib/mapping/transaction_mapping'
 
 module Scrooge
+
   describe TransactionMapping do
     let(:record) { { description: "Test transaction", amount: 12.34 } }
     let(:saved_record) { record.merge(id: 1) }
-    let(:transaction) { t = Transaction.new("Test transaction", 12.34); t.id = 1; t }
+    let(:transaction) do
+      t = Transaction.new("Test transaction", 12.34)
+      t.id = 1
+      t
+    end
     let(:mapping) { TransactionMapping }
 
     describe '#from_record' do
@@ -25,4 +30,5 @@ module Scrooge
       end
     end
   end
+
 end

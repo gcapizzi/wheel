@@ -2,6 +2,7 @@ require 'spec_helper'
 require_relative '../../lib/account'
 
 module Scrooge
+
   describe Account do
     it 'is empty by default' do
       account = Account.new
@@ -25,4 +26,5 @@ module Scrooge
       end
     end
   end
+
 end

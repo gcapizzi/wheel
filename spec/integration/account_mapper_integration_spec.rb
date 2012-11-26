@@ -3,6 +3,7 @@ require_relative '../../lib/mapper'
 require_relative '../../lib/mapping/account_mapping'
 
 module Scrooge
+
   describe Mapper, AccountMapping do
     let(:dataset) {
       db = Sequel.sqlite
@@ -54,4 +55,5 @@ module Scrooge
       end
     end
   end
+
 end

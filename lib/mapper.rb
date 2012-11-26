@@ -1,6 +1,7 @@
 require 'sequel/core'
 
 module Scrooge
+
   class Mapper
     def initialize(dataset, mapping)
       @dataset = dataset
@@ -42,4 +43,5 @@ module Scrooge
       !object.id.nil?
     end
   end
+
 end

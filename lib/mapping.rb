@@ -1,6 +1,7 @@
 require 'sequel/core'
 
 module Scrooge
+
   class Mapping
     class << self
       def maps(klass)
@@ -31,4 +32,5 @@ module Scrooge
       def fields_with_id; @fields + [:id]; end
     end
   end
+
 end

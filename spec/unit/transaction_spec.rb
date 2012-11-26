@@ -2,6 +2,7 @@ require 'spec_helper'
 require_relative '../../lib/transaction'
 
 module Scrooge
+
   describe Transaction do
     it 'is empty by default' do
       transaction = Transaction.new
@@ -19,4 +20,5 @@ module Scrooge
       end
     end
   end
+
 end

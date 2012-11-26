@@ -2,6 +2,7 @@ require 'spec_helper'
 require_relative '../../../lib/mapping/account_mapping'
 
 module Scrooge
+
   describe AccountMapping do
     let(:record) { { name: "Test account" } }
     let(:saved_record) { record.merge(id: 1) }
@@ -24,4 +25,5 @@ module Scrooge
       end
     end
   end
+
 end

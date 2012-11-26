@@ -2,6 +2,7 @@ require 'rspec'
 require_relative '../../lib/mapping'
 
 module Scrooge
+
   describe Mapping do
     let (:klass) { double("Fake class") }
     let (:mapping) do
@@ -42,4 +43,5 @@ module Scrooge
       end
     end
   end
+
 end

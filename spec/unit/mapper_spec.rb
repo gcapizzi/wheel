@@ -3,6 +3,7 @@ require 'ostruct'
 require_relative '../../lib/mapper'
 
 module Scrooge
+
   describe Mapper do
     let(:dataset) { double("Dataset") }
     let(:mapping) { double("Mapping") }
@@ -63,7 +64,8 @@ module Scrooge
         dataset.should_receive(:where).with(id: 1).and_return(object_dataset)
         object_dataset.stub(:empty?).and_return(false)
         object_dataset.should_receive(:first).and_return(saved_attributes)
-        mapping.should_receive(:from_record).with(saved_attributes).and_return(saved_object)
+        mapping.should_receive(:from_record)
+          .with(saved_attributes).and_return(saved_object)
 
         found = mapper.find(1)
 
@@ -81,4 +83,5 @@ module Scrooge
       end
     end
   end
+
 end
