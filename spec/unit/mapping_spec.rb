@@ -5,11 +5,18 @@ module Scrooge
 
   describe Mapping do
     let (:klass) { double("Fake class") }
+    let (:table) { :fake }
     let (:mapping) do
       class FakeMapping < Mapping; end
-      FakeMapping.maps klass
+      FakeMapping.maps klass, to: table
       FakeMapping.fields :one, :two, :three
       FakeMapping
+    end
+
+    describe '#table' do
+      it 'return the table name as a symbol' do
+        mapping.table.should == table
+      end
     end
 
     describe '#from_record' do

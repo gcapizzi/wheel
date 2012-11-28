@@ -4,7 +4,10 @@ module Scrooge
 
   class Mapping
     class << self
-      def maps(klass)
+      attr_reader :table
+
+      def maps(klass, options = {})
+        @table = options[:to] || klass.name.downcase
         @klass = klass
       end
 

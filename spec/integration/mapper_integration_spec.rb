@@ -6,7 +6,7 @@ module Scrooge
   class Fake < Struct.new(:id, :one, :two, :three); end
 
   describe Mapper do
-    let(:dataset) do
+    let(:db) do
       db = Sequel.sqlite
       db.create_table :fake do
         primary_key :id
@@ -14,15 +14,15 @@ module Scrooge
         Integer :two
         Decimal :three
       end
-      db[:fake]
+      db
     end
     let(:mapping) do
       class FakeMapping < Mapping; end
-      FakeMapping.maps Fake
+      FakeMapping.maps Fake, to: :fake
       FakeMapping.fields :one, :two, :three
       FakeMapping
     end
-    let(:mapper) { Mapper.new(dataset, mapping) }
+    let(:mapper) { Mapper.new(db, mapping) }
     let(:object) { Fake.new(nil, "one", 2, 3.0) }
 
     describe '#save' do

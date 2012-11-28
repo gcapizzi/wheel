@@ -5,14 +5,20 @@ require_relative '../../lib/mapper'
 module Scrooge
 
   describe Mapper do
+    let(:db) { double("DB") }
     let(:dataset) { double("Dataset") }
     let(:mapping) { double("Mapping") }
-    let(:mapper) { Mapper.new(dataset, mapping) }
+    let(:mapper) { Mapper.new(db, mapping) }
 
     let(:attributes) { { a: 1, b: 2, c: 3 } }
     let(:object) { OpenStruct.new(attributes) }
     let(:saved_attributes) { attributes.merge(id: 1) }
     let(:saved_object) { OpenStruct.new(saved_attributes) }
+
+    before do
+      db.stub(:[]).and_return(dataset)
+      mapping.stub(:table).and_return(:table)
+    end
 
     describe '#save' do
       context 'when the object has never been saved' do
