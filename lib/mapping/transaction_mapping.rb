@@ -1,4 +1,3 @@
-require 'sequel/core'
 require_relative '../transaction'
 require_relative '../mapping'
 
