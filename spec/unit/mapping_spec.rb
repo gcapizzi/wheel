@@ -8,10 +8,10 @@ module Scrooge
     let (:instance) { double("Fake class instance") }
     let (:table) { :fake }
     let (:mapping) do
-      class FakeMapping < Mapping; end
-      FakeMapping.maps klass, to: table
-      FakeMapping.fields :one, :two, :three
-      FakeMapping
+      mapping = Mapping.new
+      mapping.maps klass, to: table
+      mapping.fields :one, :two, :three
+      mapping
     end
 
     describe '#table' do

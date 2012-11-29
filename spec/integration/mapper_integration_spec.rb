@@ -16,11 +16,11 @@ module Scrooge
       end
       db
     end
-    let(:mapping) do
-      class FakeMapping < Mapping; end
-      FakeMapping.maps Fake, to: :fake
-      FakeMapping.fields :one, :two, :three
-      FakeMapping
+    let (:mapping) do
+      mapping = Mapping.new
+      mapping.maps Fake, to: :fake
+      mapping.fields :one, :two, :three
+      mapping
     end
     let(:mapper) { Mapper.new(db, mapping) }
     let(:object) { Fake.new(nil, "one", 2, 3.0) }
