@@ -5,6 +5,7 @@ module Scrooge
 
   describe Mapping do
     let (:klass) { double("Fake class") }
+    let (:instance) { double("Fake class instance") }
     let (:table) { :fake }
     let (:mapping) do
       class FakeMapping < Mapping; end
@@ -21,7 +22,6 @@ module Scrooge
 
     describe '#from_record' do
       it 'creates an object from a record hash' do
-        instance = double("Fake class instance")
         klass.should_receive(:new).and_return(instance)
         instance.should_receive(:one=).with(1)
         instance.should_receive(:two=).with(2)
@@ -36,7 +36,6 @@ module Scrooge
 
     describe '#to_record' do
       it 'converts an object to a record hash' do
-        instance = double("Fake class instance")
         instance.should_receive(:respond_to?).with(:one).and_return(true)
         instance.should_receive(:one).and_return(1)
         instance.should_receive(:respond_to?).with(:two).and_return(true)
