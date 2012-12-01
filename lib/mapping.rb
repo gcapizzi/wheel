@@ -10,8 +10,8 @@ module Scrooge
     end
 
     def maps(klass, options = {})
-      @table = options[:to] || klass.name.downcase
       @klass = klass
+      @table = options[:to] || klass.name.downcase
     end
 
     def fields(*fields)
