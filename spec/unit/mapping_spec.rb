@@ -14,6 +14,19 @@ module Scrooge
       mapping
     end
 
+    describe '#initialize' do
+      it 'executes the given block in the mapping contest' do
+        mapping = Mapping.new do
+          maps Object, to: :fake_table
+          fields :one, :two, :three
+        end
+
+        mapping.klass.should == Object
+        mapping.table.should == :fake_table
+        mapping.fields.should == [:one, :two, :three]
+      end
+    end
+
     describe '#table' do
       it 'return the table name as a symbol' do
         mapping.table.should == table

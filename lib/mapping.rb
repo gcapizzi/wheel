@@ -3,7 +3,11 @@ require 'sequel/core'
 module Scrooge
 
   class Mapping
-    attr_reader :table
+    attr_reader :klass, :table
+
+    def initialize(&block)
+      self.instance_eval(&block) if block_given?
+    end
 
     def maps(klass, options = {})
       @table = options[:to] || klass.name.downcase
