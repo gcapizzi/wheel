@@ -2,7 +2,7 @@ require 'logger'
 require 'spec_helper'
 require_relative '../../lib/mapper'
 
-module Scrooge
+module Wheel
 
   class Fake < Struct.new(:id, :one, :two, :three); end
 

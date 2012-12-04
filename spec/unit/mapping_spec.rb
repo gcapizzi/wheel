@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rspec'
 require_relative '../../lib/mapping'
 
-module Scrooge
+module Wheel
 
   describe Mapping do
     let (:klass) { double("Fake class") }

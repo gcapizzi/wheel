@@ -1,6 +1,6 @@
 require 'sequel/core'
 
-module Scrooge
+module Wheel
 
   @mappings = {}
 

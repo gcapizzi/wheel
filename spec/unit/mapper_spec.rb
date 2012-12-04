@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ostruct'
 require_relative '../../lib/mapper'
 
-module Scrooge
+module Wheel
 
   describe Mapper do
     let(:db) { double("DB") }
