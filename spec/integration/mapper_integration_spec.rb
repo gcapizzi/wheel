@@ -31,9 +31,9 @@ module Wheel
         it 'calls insert on the dataset and sets the object id' do
           mapper.save(object)
           found = mapper.find(object.id)
-          found.one.should == object.one
-          found.two.should == object.two
-          found.three.should == object.three
+          expect(found.one).to eq(object.one)
+          expect(found.two).to eq(object.two)
+          expect(found.three).to eq(object.three)
         end
       end
 
@@ -45,9 +45,9 @@ module Wheel
           object.three = 3.33
           mapper.save(object)
           found = mapper.find(object.id)
-          found.one.should == object.one
-          found.two.should == object.two
-          found.three.should == object.three
+          expect(found.one).to eq(object.one)
+          expect(found.two).to eq(object.two)
+          expect(found.three).to eq(object.three)
         end
       end
     end
@@ -56,19 +56,19 @@ module Wheel
       it 'finds a previously inserted account' do
         mapper.save(object)
         found = mapper.find(object.id)
-        found.id.should == object.id
-        found.one.should == object.one
-        found.two.should == object.two
-        found.three.should == object.three
+        expect(found.id).to eq(object.id)
+        expect(found.one).to eq(object.one)
+        expect(found.two).to eq(object.two)
+        expect(found.three).to eq(object.three)
       end
     end
 
     describe '#delete' do
       it 'deletes an account successfully' do
         mapper.save(object)
-        mapper.find(object.id).should_not be_nil
+        expect(mapper.find(object.id)).not_to be_nil
         mapper.delete(object)
-        mapper.find(object.id).should be_nil
+        expect(mapper.find(object.id)).to be_nil
       end
     end
   end
