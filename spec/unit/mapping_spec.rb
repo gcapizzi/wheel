@@ -8,22 +8,16 @@ module Scrooge
     let (:instance) { double("Fake class instance") }
     let (:table) { :fake }
     let (:mapping) do
-      mapping = Mapping.new
-      mapping.maps klass, to: table
+      mapping = Mapping.new(klass, table)
       mapping.fields :one, :two, :three
       mapping
     end
 
     describe '#initialize' do
-      it 'executes the given block in the mapping contest' do
-        mapping = Mapping.new do
-          maps Object, to: :fake_table
-          fields :one, :two, :three
-        end
-
-        mapping.klass.should == Object
-        mapping.table.should == :fake_table
-        mapping.fields.should == [:one, :two, :three]
+      it 'sets mapped class and table' do
+        mapping = Mapping.new(klass, table)
+        mapping.klass.should == klass
+        mapping.table.should == table
       end
     end
 

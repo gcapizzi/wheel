@@ -2,16 +2,26 @@ require 'sequel/core'
 
 module Scrooge
 
+  @mappings = {}
+
+  class << self
+    attr_reader :mappings
+
+    def clear_mappings!
+      @mappings = {}
+    end
+
+    def register_mapping(klass, mapping)
+      @mappings[klass] = mapping
+    end
+  end
+
   class Mapping
     attr_reader :klass, :table
 
-    def initialize(&block)
-      self.instance_eval(&block) if block_given?
-    end
-
-    def maps(klass, options = {})
+    def initialize(klass, table = nil)
       @klass = klass
-      @table = options[:to] || klass.name.downcase
+      @table = table || table_name_from_class_name(klass.name)
     end
 
     def fields(*fields)
@@ -36,6 +46,10 @@ module Scrooge
     private
 
     def fields_with_id; @fields + [:id]; end
+
+    def table_name_from_class_name(class_name)
+      class_name.split('::').last.downcase.to_sym
+    end
   end
 
 end

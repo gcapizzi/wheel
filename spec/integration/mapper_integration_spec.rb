@@ -1,3 +1,4 @@
+require 'logger'
 require 'spec_helper'
 require_relative '../../lib/mapper'
 
@@ -7,7 +8,8 @@ module Scrooge
 
   describe Mapper do
     let(:db) do
-      db = Sequel.sqlite
+      db = Sequel.sqlite '', :loggers => [Logger.new($stdout)]
+      db.sql_log_level = :debug
       db.create_table :fake do
         primary_key :id
         String :one
@@ -17,8 +19,7 @@ module Scrooge
       db
     end
     let (:mapping) do
-      mapping = Mapping.new
-      mapping.maps Fake, to: :fake
+      mapping = Mapping.new(Fake)
       mapping.fields :one, :two, :three
       mapping
     end
