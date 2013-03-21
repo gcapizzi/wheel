@@ -30,17 +30,19 @@ module Wheel
     end
 
     def to_record(object)
-      @fields.inject({}) do |record, field|
+      record = {}
+      @fields.each do |field|
         record[field] = object.send(field) if object.respond_to? field
-        record
       end
+      record
     end
 
     def from_record(record)
-      fields_with_id.inject(@klass.new) do |object, field|
+      object = @klass.new
+      fields_with_id.each do |field|
         object.send("#{field}=", record[field]) if record[field]
-        object
       end
+      object
     end
 
     private
