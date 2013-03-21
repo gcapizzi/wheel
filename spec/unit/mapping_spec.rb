@@ -17,14 +17,14 @@ module Wheel
     describe '#initialize' do
       it 'sets mapped class and table' do
         mapping = Mapping.new(klass, table)
-        mapping.klass.should == klass
-        mapping.table.should == table
+        expect(mapping.klass).to eq(klass)
+        expect(mapping.table).to eq(table)
       end
     end
 
     describe '#table' do
-      it 'return the table name as a symbol' do
-        mapping.table.should == table
+      it 'returns the table name as a symbol' do
+        expect(mapping.table).to eq(table)
       end
     end
 
@@ -38,7 +38,7 @@ module Wheel
 
         object = mapping.from_record(one: 1, two: 2, three: 3, four: 4)
 
-        object.should == instance
+        expect(object).to eq(instance)
       end
     end
 
@@ -53,7 +53,7 @@ module Wheel
 
         record = mapping.to_record(instance)
 
-        record.should == { one: 1, two: 2 }
+        expect(record).to eq({ one: 1, two: 2 })
       end
     end
   end
