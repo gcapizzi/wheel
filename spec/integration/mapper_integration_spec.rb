@@ -8,8 +8,7 @@ module Wheel
 
   describe Mapper do
     let(:db) do
-      db = Sequel.sqlite '', :loggers => [Logger.new($stdout)]
-      db.sql_log_level = :debug
+      db = Sequel.sqlite ''
       db.create_table :fake do
         primary_key :id
         String :one
