@@ -13,7 +13,7 @@ module Wheel
     end
 
     def save(object)
-      if saved? object
+      if saved?(object)
         update(object)
       else
         insert(object)
@@ -21,13 +21,12 @@ module Wheel
     end
 
     def delete(object)
-      dataset.where(id: object.id).delete if saved? object
+      dataset.where(id: object.id).delete if saved?(object)
     end
 
     def find(id)
-      record = dataset.where(id: id)
-      object = @mapping.from_record(record.first) if !record.empty?
-      return object
+      record = dataset.where(id: id).first
+      @mapping.from_record(record) if !record.nil?
     end
 
     private
