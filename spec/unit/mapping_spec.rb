@@ -4,7 +4,6 @@ require 'rspec'
 require 'mapping'
 
 module Wheel
-
   describe Mapping do
     let (:klass) { double("Fake class") }
     let (:instance) { double("Fake class instance") }
@@ -58,5 +57,4 @@ module Wheel
       end
     end
   end
-
 end

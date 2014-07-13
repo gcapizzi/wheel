@@ -1,7 +1,6 @@
 require 'sequel/core'
 
 module Wheel
-
   class Mapper
     def initialize(db, mapping)
       @db = db
@@ -46,5 +45,4 @@ module Wheel
       !object.id.nil?
     end
   end
-
 end

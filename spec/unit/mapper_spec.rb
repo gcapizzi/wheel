@@ -4,7 +4,6 @@ require 'ostruct'
 require 'mapper'
 
 module Wheel
-
   describe Mapper do
     let(:db) { double("DB") }
     let(:dataset) { double("Dataset") }
@@ -101,5 +100,4 @@ module Wheel
       end
     end
   end
-
 end

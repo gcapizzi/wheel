@@ -1,7 +1,6 @@
 require 'sequel/core'
 
 module Wheel
-
   @mappings = {}
 
   class << self
@@ -53,5 +52,4 @@ module Wheel
       class_name.split('::').last.downcase.to_sym
     end
   end
-
 end

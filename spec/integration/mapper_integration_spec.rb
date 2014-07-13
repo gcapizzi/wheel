@@ -4,7 +4,6 @@ require 'logger'
 require 'mapper'
 
 module Wheel
-
   class Fake < Struct.new(:id, :one, :two, :three); end
 
   describe Mapper do
@@ -72,5 +71,4 @@ module Wheel
       end
     end
   end
-
 end
