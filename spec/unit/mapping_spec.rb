@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rspec'
-require_relative '../../lib/mapping'
+
+require 'mapping'
 
 module Wheel
 

@@ -1,6 +1,7 @@
-require 'logger'
 require 'spec_helper'
-require_relative '../../lib/mapper'
+require 'logger'
+
+require 'mapper'
 
 module Wheel
 
